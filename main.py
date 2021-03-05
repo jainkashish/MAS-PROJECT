@@ -1,13 +1,13 @@
 from node import *
+from characteristic_function import *
 
-#main function
 if __name__ == "__main__":
     n = int(input("Enter Number of Nodes"))
     nodes = []  # it stores the information about n nodes
-    for x in range(1, n+1):
-        nodes[x] = Node(x)
+    for x in range(0, n):
+        nodes.append(Node(x))  
         
- # added comment
+    characteristic_fun(n)
 
 
-    
+
