@@ -5,10 +5,10 @@ num = []
 
 
 def getSubsets(n):
-    for x in range(1, n+1):
+    for x in range(0, n):
         num.append(x)
-    for t in range(1, n+1):
-        for x in list(itertools.combinations(num, t)):
+    for t in range(0, n):
+        for x in set(itertools.combinations(num, t)):
             v[x] = 0
 
 
@@ -22,3 +22,4 @@ def characteristic_fun(n):
     for key, val in v.items():
         print(key)
         print(val)
+    return v

@@ -1,5 +1,6 @@
 from node import *
 from characteristic_function import *
+from find_coalition import *
 
 if __name__ == "__main__":
     n = int(input("Enter Number of Nodes"))
@@ -7,7 +8,4 @@ if __name__ == "__main__":
     for x in range(0, n):
         nodes.append(Node(x))  
         
-    characteristic_fun(n)
-
-
-
+    v = characteristic_fun(n)
