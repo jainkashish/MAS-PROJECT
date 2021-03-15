@@ -1,10 +1,10 @@
-from characteristic_function import *
-from main import *
+import characteristic_function
 
-v = characteristic_fun(n)
+v = {}
 
 final_coalition = []
 discard = set()
+
 
 def calculate_si(i):
     value = 0
@@ -16,7 +16,8 @@ def calculate_si(i):
                 value = v[key]/len(key)
     return value, optimal
 
-def find_coalition(i):
+
+def find_coalition(n):
     val = 0
     optimal = set()
     for x in range(n):
@@ -31,6 +32,11 @@ def find_coalition(i):
 
 
 def find_optimal_coalition(n):
-    for i in range(0, n) and i not in discard:
-        find_coalition(i)
+    v = characteristic_function.characteristic_fun(n)
+    # for key, val in v.items():
+    #     for j in key:
+    #         print(j)
+    #     print("----------------------")
+    while(len(discard) != n):
+        find_coalition(n)
     return final_coalition

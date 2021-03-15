@@ -8,7 +8,7 @@ def getSubsets(n):
     for x in range(0, n):
         num.append(x)
     for t in range(0, n):
-        for x in set(itertools.combinations(num, t)):
+        for x in set(itertools.combinations(num, t+1)):
             v[x] = 0
 
 
