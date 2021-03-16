@@ -20,14 +20,14 @@ class Characteristic:
     def generate_ch_function(self):
         self.getSubsets()  # it generates all subsets
         # Example 1
-        self.chf_table[(0,)] = 2
-        self.chf_table[(1,)] = 3
-        self.chf_table[(2,)] = 5
-        self.chf_table[(0, 1)] = 7
-        self.chf_table[(1, 2)] = 4
-        self.chf_table[(0, 2)] = 6
-        self.chf_table[(0, 1, 2)] = 5
-        #answer is (0,1), (2)
+        # self.chf_table[(0,)] = 2
+        # self.chf_table[(1,)] = 3
+        # self.chf_table[(2,)] = 5
+        # self.chf_table[(0, 1)] = 7
+        # self.chf_table[(1, 2)] = 4
+        # self.chf_table[(0, 2)] = 6
+        # self.chf_table[(0, 1, 2)] = 5
+        # optimal coalition (0,1), (2)
 
         # Example 2
         # self.chf_table[(0,)] = 1
@@ -38,7 +38,7 @@ class Characteristic:
         # self.chf_table[(0, 2)] = 5
         # self.chf_table[(0, 1, 2)] = 6
 
-        # answer is (0),(1),(2)
+        # optimal coalition: (0),(1),(2)
 
         # Example 3
         # self.chf_table[(0,)] = 1
@@ -49,14 +49,26 @@ class Characteristic:
         # self.chf_table[(1, 2)] = 4
         # self.chf_table[(0, 1, 2)] = 6
 
-        # answer is (0),(1),(2) / (0,1,2)
+        # optimal coalition: (0),(1),(2) / (0,1,2)
+
+        # Example 4
+        self.chf_table[(0,)] = 1
+        self.chf_table[(1,)] = 3
+        self.chf_table[(0, 1)] = 10
+
+        # optimal coalition: (0,1)
+        # shapley value: (4,6)
 
         # for key, val in self.chf_table.items():
         #     sum = 0
         #     for x in key:
         #         sum += x
         #     self.chf_table[key] = sum
-        # for key, val in self.chf_table.items():
-        #     print(key)
-        #     print(val)
+        self.chf_table[()] = 0
         return self.chf_table
+
+    # it prints the characteristic function table
+    def print_ch_table(self):
+        print("Characteristic function table: ")
+        for coalition, ch_val in self.chf_table.items():
+            print(coalition, "----> ", ch_val)

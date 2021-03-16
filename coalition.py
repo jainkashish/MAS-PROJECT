@@ -12,11 +12,6 @@ class Coalition:
         # the loop runs until all the agents become part of some coalition
         while(len(self.discard) != self.n):
             self.find_coalition()
-        # print("start")
-        # prints all the coalitions formed
-        for i in self.final_coalition:
-            print(i)
-        # print("end")
 
     # it compares the optimal coalitions of each agent i and returns the most optimal among them
     def find_coalition(self):
@@ -32,7 +27,6 @@ class Coalition:
             if (t_payoff > payoff):
                 payoff = t_payoff
                 optimal = t_optimal
-        print("\n\n")
         # all the elements which have become part of this coalition are added to the discard set
         for x in optimal:
             self.discard.add(x)
@@ -45,15 +39,22 @@ class Coalition:
         global optimal  # stores the most optimal coalition for the agent i
         payoff = 0
         optimal = []
-        print("for i ", i)
+        # print("for i ", i)
         # iterate through all coalitions that include i
-        for key, _ in self.chf_table.items():
-            d = set(key)  # typecasting tuple to set
-            if i in key and len(d.intersection(self.discard)) == 0:
-                if (self.chf_table[key]/(len(key)) > payoff):
-                    optimal = key
-                    payoff = self.chf_table[key]/len(key)
+        for coalition, _ in self.chf_table.items():
+            d = set(coalition)  # typecasting tuple to set
+            if i in coalition and len(d.intersection(self.discard)) == 0:
+                if (self.chf_table[coalition]/(len(coalition)) > payoff):
+                    optimal = coalition
+                    payoff = self.chf_table[coalition]/len(coalition)
 
-        print("the payoff is ", payoff)
-        print("the optimal is ", optimal)
+        # print("the payoff is ", payoff)
+        # print("the optimal is ", optimal)
         return payoff, optimal
+
+    # it prints the optimal coalition table
+    def print_optimal_coalition(self):
+        print("Final optimal coalition: ")
+        for coalition in self.final_coalition:
+            print(coalition)
+        print('\n')
