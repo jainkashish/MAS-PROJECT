@@ -38,7 +38,7 @@ class Coalition:
         global payoff  # stores the payoff of the optimal coalition
         global optimal  # stores the most optimal coalition for the agent i
         payoff = 0
-        optimal = []
+        optimal = set()
         # print("for i ", i)
         # iterate through all coalitions that include i
         for coalition, _ in self.chf_table.items():

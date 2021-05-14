@@ -2,12 +2,13 @@ import node
 import characteristic_function
 import coalition
 import shapley
+import time
 
 if __name__ == "__main__":
 
-    n = int(input("Enter Number of Nodes"))
+    n = int(input("Enter Number of Nodes:\n"))
     nodes = []  # it stores the information about n nodes
-
+    start = time.time()
     # list of Node class objects for all agents
     for x in range(0, n):
         nodes.append(node.Node(x))
@@ -18,7 +19,7 @@ if __name__ == "__main__":
     # creating object of Characteristic function class
     ch_fun_obj = characteristic_function.Characteristic(n)
     ch_function = ch_fun_obj. generate_ch_function()
-    ch_fun_obj.print_ch_table()
+    # ch_fun_obj.print_ch_table()
 
     # Step 2: Finding the optimal coalition using the distributed algorithm
     # creating object of Coalition class
@@ -33,3 +34,6 @@ if __name__ == "__main__":
     shapley_obj.distribute_payoff()
     payoff = shapley_obj.payoff
     shapley_obj.print_payoff_table()
+
+    end = time.time()
+    print("Total time taken for {} is {} seconds".format(n, round(end-start, 4)))

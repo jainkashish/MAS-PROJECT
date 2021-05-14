@@ -1,4 +1,6 @@
 import itertools
+import random
+from prettytable import PrettyTable
 
 
 class Characteristic:
@@ -19,6 +21,12 @@ class Characteristic:
     # returns the characteristic function table
     def generate_ch_function(self):
         self.getSubsets()  # it generates all subsets
+        # for key, value in self.chf_table.items():
+        #     sum = 0
+        #     for t in key:
+        #         sum += t
+        #     self.chf_table[key] = sum
+
         # Example 1
         # self.chf_table[(0,)] = 2
         # self.chf_table[(1,)] = 3
@@ -51,24 +59,38 @@ class Characteristic:
 
         # optimal coalition: (0),(1),(2) / (0,1,2)
 
+        # self.chf_table[(0,)] = 5
+        # self.chf_table[(1,)] = 10
+        # self.chf_table[(2,)] = 4
+        # self.chf_table[(0, 1)] = 14
+        # self.chf_table[(0, 2)] = 16
+        # self.chf_table[(1, 2)] = 12
+        # self.chf_table[(0, 1, 2)] = 20
+
         # Example 4
-        self.chf_table[(0,)] = 1
-        self.chf_table[(1,)] = 3
-        self.chf_table[(0, 1)] = 10
+        # self.chf_table[(0,)] = 1
+        # self.chf_table[(1,)] = 3
+        # self.chf_table[(0, 1)] = 10
 
         # optimal coalition: (0,1)
         # shapley value: (4,6)
 
-        # for key, val in self.chf_table.items():
-        #     sum = 0
-        #     for x in key:
-        #         sum += x
-        #     self.chf_table[key] = sum
+        for key, val in self.chf_table.items():
+            sum = 0
+            for x in key:
+                sum += (x)
+                r = random.randint(0, 9)
+                sum += r
+            self.chf_table[key] = sum
         self.chf_table[()] = 0
         return self.chf_table
 
     # it prints the characteristic function table
     def print_ch_table(self):
-        print("Characteristic function table: ")
+        print("\n")
+        myTable = PrettyTable(["Subset", "Ch value"])
         for coalition, ch_val in self.chf_table.items():
-            print(coalition, "----> ", ch_val)
+            s = (str)(coalition)
+            myTable.add_row([s, ch_val])
+        print(myTable.get_string(title="Characteristic table"))
+        print("\n")
